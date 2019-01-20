@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package echo;
+
+message Message {
+    int32 messageId = 1;
+    string payload = 2;
+}
+
+service EchoService {
+    rpc UnaryEcho (Message) returns (Message){};
+    rpc ClientStreamingEcho(stream Message) returns (Message) {}
+    rpc ServerStreamingEcho(Message) returns (stream Message){};
+    rpc BidirectionalStreaming(stream Message) returns(stream Message){};
+}
